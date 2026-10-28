@@ -1,0 +1,496 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>A Little Hello for Muskan Khaira 💗</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            font-family: 'DM Sans', sans-serif;
+            color: #493541;
+
+            background:
+                radial-gradient(circle at 10% 15%, #ffe0eb, transparent 30%),
+                radial-gradient(circle at 90% 85%, #f5e2ff, transparent 30%),
+                linear-gradient(135deg, #fff8fb, #fff2f6, #f9f4ff);
+
+            overflow-x: hidden;
+        }
+
+        .floating-heart {
+            position: fixed;
+            font-size: 25px;
+            opacity: 0.6;
+            animation: float 5s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        .heart1 {
+            top: 12%;
+            left: 12%;
+        }
+
+        .heart2 {
+            top: 20%;
+            right: 13%;
+            animation-delay: 1s;
+        }
+
+        .heart3 {
+            bottom: 15%;
+            left: 17%;
+            animation-delay: 2s;
+        }
+
+        .heart4 {
+            bottom: 15%;
+            right: 12%;
+            animation-delay: 1.5s;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 540px;
+            padding: 40px 30px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.88);
+            border: 1px solid white;
+            border-radius: 30px;
+            box-shadow: 0 24px 70px rgba(161, 94, 124, 0.15);
+            animation: appear 0.8s ease;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 9px 15px;
+            border-radius: 30px;
+            background: #fff0f5;
+            color: #c94e78;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .main-heart {
+            width: 80px;
+            height: 80px;
+            margin: 25px auto 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 25px;
+            background: linear-gradient(145deg, #ffe1ec, #fff1f7);
+            font-size: 42px;
+            animation: heartbeat 2s infinite;
+            box-shadow: 0 10px 25px rgba(233, 107, 145, 0.15);
+        }
+
+        h1 {
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(30px, 7vw, 43px);
+            line-height: 1.2;
+        }
+
+        h1 span {
+            color: #c94e78;
+        }
+
+        .intro {
+            max-width: 380px;
+            margin: 0 auto 30px;
+            color: #8c7482;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .step {
+            display: none;
+            animation: slideIn 0.45s ease;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+            font-size: 21px;
+        }
+
+        .subtitle {
+            margin-bottom: 22px;
+            color: #8c7482;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        .option {
+            padding: 15px 10px;
+            border: 1px solid #f3d9e4;
+            border-radius: 15px;
+            background: #fffafd;
+            color: #493541;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .option:hover {
+            transform: translateY(-3px);
+            background: #fff0f5;
+            border-color: #efa9c2;
+            box-shadow: 0 8px 18px rgba(201, 78, 120, 0.1);
+        }
+
+        .response {
+            margin-top: 18px;
+            padding: 14px;
+            border-radius: 15px;
+            background: #fff0f5;
+            color: #9a4569;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .primary {
+            width: 100%;
+            margin-top: 20px;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #e96b91, #c94e78);
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            box-shadow: 0 10px 22px rgba(201, 78, 120, 0.22);
+        }
+
+        .primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 13px 25px rgba(201, 78, 120, 0.3);
+        }
+
+        .final-note {
+            padding: 22px 15px;
+            border: 1px solid #f6dce7;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #fff7fa, #fffafd);
+            font-size: 15px;
+            line-height: 2;
+        }
+
+        .final-note strong {
+            color: #c94e78;
+        }
+
+        .footer {
+            margin-top: 28px;
+            color: #b39ba8;
+            font-size: 12px;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(15px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(-5deg);
+            }
+            50% {
+                transform: translateY(-15px) rotate(8deg);
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            15% {
+                transform: scale(1.08);
+            }
+            30% {
+                transform: scale(1);
+            }
+            45% {
+                transform: scale(1.05);
+            }
+        }
+
+        @media (max-width: 420px) {
+            .card {
+                padding: 30px 20px;
+            }
+
+            .options {
+                grid-template-columns: 1fr;
+            }
+
+            .option {
+                padding: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Floating decorations -->
+    <div class="floating-heart heart1">✦</div>
+    <div class="floating-heart heart2">♡</div>
+    <div class="floating-heart heart3">✧</div>
+    <div class="floating-heart heart4">💗</div>
+
+    <main class="card">
+
+        <div class="badge">✦ A Little Moment Just for You</div>
+
+        <div class="main-heart">💗</div>
+
+        <h1>
+            Hello, <span>Muskan Khaira!</span>
+        </h1>
+
+        <p class="intro">
+            Just popping in with a tiny bit of sweetness to check on you.
+            You deserve a lovely moment today. 🌷
+        </p>
+
+        <!-- STEP 1: HOW ARE YOU? -->
+        <section class="step active" id="step1">
+
+            <h2>First things first... how are you? 💕</h2>
+
+            <p class="subtitle">
+                Pick whichever feels most like you right now.
+            </p>
+
+            <div class="options">
+
+                <button class="option"
+                    onclick="chooseMood('Amazing! Keep that beautiful energy going! ✨')">
+                    😊 Amazing
+                </button>
+
+                <button class="option"
+                    onclick="chooseMood('Sending you a little extra sunshine today! ☀️')">
+                    🌷 Pretty good
+                </button>
+
+                <button class="option"
+                    onclick="chooseMood('Take things slowly today. Be gentle with yourself. 🤍')">
+                    😌 Just okay
+                </button>
+
+                <button class="option"
+                    onclick="chooseMood('Sending you a warm virtual hug. I hope things feel lighter soon! 🫶')">
+                    🥹 Could be better
+                </button>
+
+            </div>
+
+            <div class="response" id="moodResponse" hidden></div>
+
+            <button class="primary" onclick="nextStep(2)">
+                Let's Talk About Your Day →
+            </button>
+
+        </section>
+
+        <!-- STEP 2: ASK ABOUT HER DAY -->
+        <section class="step" id="step2">
+
+            <h2>How's your day been, Muskan? 🌸</h2>
+
+            <p class="subtitle">
+                Every kind of day is allowed. Choose your little vibe.
+            </p>
+
+            <div class="options">
+
+                <button class="option"
+                    onclick="chooseDay('A happy day looks good on you! Keep smiling! ✨')">
+                    🌞 Lovely
+                </button>
+
+                <button class="option"
+                    onclick="chooseDay('Getting through a busy day is an achievement too! 💗')">
+                    🌿 A bit busy
+                </button>
+
+                <button class="option"
+                    onclick="chooseDay('I hope the rest of your day feels lighter and happier. 🌷')">
+                    ☁️ A little tiring
+                </button>
+
+                <button class="option"
+                    onclick="chooseDay('Hopefully, a small and sweet moment turns your day around! 🦋')">
+                    🦋 A mixed one
+                </button>
+
+            </div>
+
+            <div class="response" id="dayResponse" hidden></div>
+
+            <button class="primary" onclick="nextStep(3)">
+                One Last Little Thing for You 💌
+            </button>
+
+        </section>
+
+        <!-- STEP 3: SWEET ENDING -->
+        <section class="step" id="step3">
+
+            <h2>A Tiny Reminder for You 💖</h2>
+
+            <p class="subtitle">
+                Before you go, keep these two little lines with you.
+            </p>
+
+            <div class="final-note">
+                <strong>May your heart find a reason to smile today,</strong>
+                <br>
+                and may something beautiful come your way. 🌷✨
+            </div>
+
+            <button class="primary" onclick="sendHappiness()">
+                Send a Little Happiness 💗
+            </button>
+
+            <div class="response" id="finalResponse" hidden>
+                A little reminder: you make this world brighter just by
+                being you. Have a lovely day, Muskan! 💕
+            </div>
+
+        </section>
+
+        <div class="footer">
+            Made with a little kindness & lots of pink ♡
+        </div>
+
+    </main>
+
+    <script>
+
+        // Move between website sections
+        function nextStep(number) {
+
+            document.querySelectorAll('.step').forEach(function(step) {
+                step.classList.remove('active');
+            });
+
+            document.getElementById('step' + number)
+                .classList.add('active');
+        }
+
+        // Display a response based on her mood
+        function chooseMood(message) {
+
+            const response = document.getElementById('moodResponse');
+
+            response.textContent = message;
+            response.hidden = false;
+        }
+
+        // Display a response based on her day
+        function chooseDay(message) {
+
+            const response = document.getElementById('dayResponse');
+
+            response.textContent = message;
+            response.hidden = false;
+        }
+
+        // Show a final message and floating hearts
+        function sendHappiness() {
+
+            document.getElementById('finalResponse').hidden = false;
+
+            const symbols = ['💗', '💕', '✨', '🌸', '♡'];
+
+            for (let i = 0; i < 20; i++) {
+
+                const heart = document.createElement('span');
+
+                heart.textContent =
+                    symbols[Math.floor(Math.random() * symbols.length)];
+
+                heart.style.position = 'fixed';
+                heart.style.left = (10 + Math.random() * 80) + 'vw';
+                heart.style.top = (30 + Math.random() * 50) + 'vh';
+                heart.style.fontSize = (18 + Math.random() * 15) + 'px';
+                heart.style.pointerEvents = 'none';
+                heart.style.zIndex = '100';
+
+                heart.style.transition =
+                    'transform 1.5s ease, opacity 1.5s ease';
+
+                document.body.appendChild(heart);
+
+                requestAnimationFrame(function() {
+
+                    heart.style.transform =
+                        'translateY(-150px) rotate(30deg)';
+
+                    heart.style.opacity = '0';
+
+                });
+
+                setTimeout(function() {
+                    heart.remove();
+                }, 1600);
+            }
+        }
+
+    </script>
+
+</body>
+</html>
+```
